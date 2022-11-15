@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+  <div class="container">
+        <div class="row">
+            <div class="card">
+                <div class="header">
+                    <a class="btn btn-success" href="{% url 'mobil_add' %}">Tambahkan Mobil Disini</a>
+                </div>
+                <div class="body">
+                    <table class="table table-success table-striped">
+                        <thead>
+                          <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Deskripsi</th>
+                            <th scope="col">Merek</th>
+                            <th scope="col">Harga</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in produk %}
+                          <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ p.nama }}</td>
+                            <td>{{ p.deskripsi }}</td>
+                            <td>{{ p.merek }}</td>
+                            <td>{{ p.harga }}</td>
+                            <td>
+                                <a class="btn btn-warning btn-sm" href="{% url 'mobil_update' p.id %}">Update</a>
+                                <a onclick="alert('Apakah Anda Ingin Menghapusnya?')" class="btn btn-danger btn-sm" href="{% url 'mobil_delete' p.id %}">Delete</a>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+            </div>
+        </div>
+            
+        </div>
+    </div>
+{% endblock content %}
+

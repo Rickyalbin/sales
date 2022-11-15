@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content  %}
+    
+<link rel="stylesheet" href="{% static 'style.css' %}">
+  <div class="container">
+        <div class="card">
+          <div class="body">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="mb-3">
+                <label class="form-label">Nama</label>
+                <textarea class="form-control" name="nama" placeholder="Silahkan Isi Nama Mobil!">{{ get_produk.nama }}</textarea> 
+              </div>
+              <div class="mb-3">
+                <label for="disabledSelect" class="form-label">Merek</label>
+                <select name="merek" id="" class="form-control">
+                  {% for merek  in merek  %}
+                    {% if get_produk.merek == merek %}
+                      <option value="{{ merek.nama }}" selected="selected">{{ merek.nama }}</option>
+                    {% else %}
+                      <option value="{{ merek.nama }}">{{ merek.nama }}</option>
+                    {% endif %}
+                  {% endfor %}
+                  
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Harga</label>
+                <textarea class="form-control" name="harga" placeholder="Harga Mobil">{{ get_produk.harga }}</textarea>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" placeholder="Silahkan Isi Deskripsi Produk Anda!">{{ get_produk.deskripsi }}</textarea>
+              </div>
+
+
+              <button type="submit" class="btn btn-primary">Lanjutkan</button>
+            </fieldset>
+          </form>
+          </div>
+        </div>
+   
+      </div>
+{% endblock content %}
